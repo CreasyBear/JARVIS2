@@ -1,0 +1,6 @@
+llama-index
+beautifulsoup4
+requests
+flask
+psutil
+tiktoken

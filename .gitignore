@@ -1,0 +1,190 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+.eggs/
+*.pyc
+
+# Virtual environments
+venv/
+jarvis_env/
+jarvis_env/lib/
+env/
+.env
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Node.js
+node_modules/
+jarvis-frontend/node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build files
+/build
+/dist
+
+# Large binary files
+*.dylib
+*.so
+*.dll
+*.exe
+
+# Data and uploads
+/data/
+/uploads/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+/k8s/secrets.yaml
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# Pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Environments
+.env
+.venv
+env/
+
+# Flask
+instance/
+
+# Redis
+dump.rdb
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Large model files
+*.ckpt
+*.pth
+*.h5
+*.model
+
+# Compiled Python files
+*.pyc
+
+# Cython debug symbols
+cython_debug/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# mkdocs documentation
+/site
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/

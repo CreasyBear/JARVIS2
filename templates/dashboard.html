@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .metric {
+      margin-bottom: 10px;
+    }
+
+    #query-interface {
+      margin-top: 20px;
+    }
+
+    #query-input {
+      width: 100%;
+      height: 100px;
+    }
+
+    #query-response {
+      margin-top: 20px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JARVIS Dashboard</h1>
+
+  <h2>System Metrics</h2>
+  <div class="metric">CPU Usage: {{ metrics.cpu_percent }}%</div>
+  <div class="metric">Memory Usage: {{ metrics.memory_percent }}%</div>
+  <div class="metric">Disk Usage: {{ metrics.disk_percent }}%</div>
+  <div class="metric">Uptime: {{ metrics.uptime | round(2) }} seconds</div>
+
+  <div id="query-interface">
+    <h2>Query JARVIS</h2>
+    <textarea id="query-input" placeholder="Enter your query here..."></textarea>
+    <button onclick="submitQuery()">Submit Query</button>
+    <div id="query-response"></div>
+  </div>
+
+  <script>
+    function submitQuery() {
+      const query = document.getElementById('query-input').value;
+      fetch('/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: query }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('query-response').textContent = data.response;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          document.getElementById('query-response').textContent = 'An error occurred while processing your query.';
+        });
+    }
+  </script>
+</body>
+
+</html>

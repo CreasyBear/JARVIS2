@@ -1,0 +1,22 @@
+llama-index
+beautifulsoup4
+requests
+Flask  # Remove if not using Flask
+Flask-CORS
+psutil
+tiktoken
+PyGithub
+openai
+python-dotenv
+Flask-Login
+Flask-Caching
+Flask-Limiter
+Flask-Talisman
+spacy
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl
+Pillow
+torch
+torchvision
+redis  # Remove if not using Redis
+llama_deploy
+pytest

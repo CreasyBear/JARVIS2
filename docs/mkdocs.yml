@@ -1,0 +1,15 @@
+site_name: JARVIS Documentation
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Setup:
+      - Frontend: frontend.md
+      - Backend: backend.md
+  - Deployment: deployment.md
+  - API Reference: api.md
+  - Testing: testing.md
+
+plugins:
+  - search
