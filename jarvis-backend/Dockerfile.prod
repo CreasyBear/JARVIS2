@@ -1,9 +1,9 @@
 # Stage 1: Build
 FROM python:3.9-slim AS builder
 WORKDIR /app
-COPY requirements.txt .
+COPY requirements.txt .  # Copy requirements.txt from the root directory
 RUN pip install --no-cache-dir -r requirements.txt
-COPY jarvis-backend .
+COPY jarvis-backend .  # Copy the backend source code
 
 # Stage 2: Run
 FROM python:3.9-slim
