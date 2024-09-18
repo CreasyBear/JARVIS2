@@ -1,7 +1,8 @@
 # Stage 1: Build
 FROM python:3.9-slim AS builder
 WORKDIR /app
-RUN pip install --no-cache-dir -r ../requirements.txt
+COPY ../../requirements.txt .  # Copy requirements.txt from the root directory
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Stage 2: Run
