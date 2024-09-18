@@ -15,7 +15,7 @@ venv/
 jarvis_env/
 jarvis_env/lib/
 env/
-.envgi
+.env
 
 # IDEs and editors
 .idea/
