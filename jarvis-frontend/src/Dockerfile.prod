@@ -1,12 +1,28 @@
 # Stage 1: Build
 FROM python:3.9-slim AS builder
 WORKDIR /app
+
+# Copy only the requirements file first to leverage Docker cache
 COPY /JARVIS2/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
 COPY . .
 
 # Stage 2: Run
 FROM python:3.9-slim
 WORKDIR /app
+
+# Copy only necessary files from builder stage
 COPY --from=builder /app /app
-CMD ["python", "src/main.py"]
+COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+
+# Set environment variables
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+# Expose the port the app runs on
+EXPOSE 5001
+
+# Run the application
+CMD ["flask", "run", "--port=5001"]
