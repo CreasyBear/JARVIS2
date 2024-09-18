@@ -51,6 +51,22 @@ Last updated: [Current Date]
 5. Evaluation:
    - Implements RAG self-evaluation for performance assessment.
 
+6. **System Architecture:**
+   - Utilizes a multi-agent system with specialized agents for NLP, image processing, web scraping, and information retrieval.
+   - Containers orchestrated with Docker and managed via Docker Compose.
+   - Redis used for caching and PostgreSQL for structured data storage.
+   - NGINX deployed for routing and serving frontend and backend.
+
+7. **API Endpoints:**
+   - `/api/query`: Handles user queries, processes them via InformationService, and returns responses.
+   - `/execute`: Executes tasks by delegating to appropriate agents based on task type.
+
+8. **Agent Functionalities:**
+   - **NaturalLanguageProcessingAgent:** Processes text-based tasks using OpenAI's GPT-3.5-turbo model.
+   - **ImageProcessingAgent:** Handles image uploads and performs object detection.
+   - **WebScrapingAgent:** Scrapes web data based on provided URLs to retrieve up-to-date information.
+   - **InformationService:** Manages the knowledge base interactions and caches responses for improved performance.
+
 ## Priority Items
 
 1. Enhance image processing capabilities:
@@ -111,3 +127,60 @@ Last updated: [Current Date]
 1. Exploring the potential for deploying JARVIS in a cloud environment for increased scalability.
 2. Investigating the integration of more specialized AI models for specific tasks.
 3. Considering the development of a mobile interface for JARVIS.
+
+## How JARVIS Operates
+
+JARVIS is a multi-modal AI assistant built using a modular, microservices-based architecture. It leverages specialized agents to handle different types of tasks:
+
+- **NLP Agent:** Uses OpenAI's GPT-3.5-turbo for understanding and generating text-based responses.
+- **Image Processing Agent:** Handles image uploads, performing tasks like object detection and image classification.
+- **Web Scraping Agent:** Scrapes data from provided URLs to retrieve up-to-date information.
+- **Information Service:** Manages the knowledge base, which includes Wikipedia articles, GitHub updates, and arXiv papers. It provides information retrieval capabilities with caching for improved performance.
+
+### System Workflow
+
+1. **User Interaction:** Users interact with the React-based frontend, submitting text queries or image uploads.
+2. **API Handling:** The backend Flask API receives the requests and delegates tasks to the appropriate agents via the multi-agent workflow.
+3. **Task Execution:** Each agent processes its specific task type and returns results.
+4. **Response:** The backend consolidates responses and sends them back to the frontend for display.
+
+### Interfacing with JARVIS
+
+To interface with JARVIS, interact with the following API endpoints:
+
+- **POST `/api/query`:** Submit text queries for information retrieval.
+  - **Request Body:**
+    ```json
+    {
+      "query": "Your text query here"
+    }
+    ```
+  - **Response:**
+    ```json
+    {
+      "response": "JARVIS's response to your query."
+    }
+    ```
+
+- **POST `/execute`:** Submit tasks specifying the type and associated data.
+  - **Request Body:**
+    ```json
+    {
+      "type": "TaskType",
+      "data": {
+        "key": "value"
+      }
+    }
+    ```
+    - **Task Types:** `NLP`, `ImageProcessing`, `WebScraping`, `InformationRetrieval`
+  - **Response:**
+    ```json
+    {
+      "status": "success",
+      "result": { /* Task-specific result */ }
+    }
+    ```
+
+Ensure that requests to `/api/query` and `/execute` endpoints include necessary authentication tokens.
+
+---

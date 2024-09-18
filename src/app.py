@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, request  # Added 'request' import
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-from flask_clerk import Clerk  # Ensure only necessary imports are present
+from flask_clerk import Clerk
 import logging
 from logging.handlers import RotatingFileHandler
-from src.information_service import information_service  # Import InformationService
-from src.multi_agent_workflow import execute_agents  # Updated import for execute_agents
+from src.information_service import information_service
+from src.multi_agent_workflow import execute_agents
 
 app = Flask(__name__)
 CORS(app)
@@ -60,7 +60,3 @@ async def execute():
         return jsonify({'status': 'success', 'result': result})
     except ValueError as e:
         return jsonify({'status': 'error', 'message': str(e)}), 400
-
-# ... existing routes ...
-
-# ... additional routes and configurations ...

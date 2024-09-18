@@ -27,14 +27,10 @@ class TaskPlannerAgent:
 
     def decompose_task(self, query: str) -> List[str]:
         doc = self.nlp(query)
-        # This is a simple example. In a real application, you'd use more sophisticated NLP techniques.
-        subtasks = []
-        for sent in doc.sents:
-            subtasks.append(sent.text)
+        subtasks = [sent.text for sent in doc.sents]
         return subtasks
 
     def create_query_engine(self) -> SubQuestionQueryEngine:
-        """Create a query engine with tools for different types of tasks."""
         tools = [
             QueryEngineTool(
                 query_engine=self.knowledge_base.as_query_engine(),

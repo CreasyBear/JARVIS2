@@ -19,8 +19,8 @@ services:
       dockerfile: Dockerfile.prod
     environment:
       - FLASK_ENV=production
-      - SECRET_KEY=${SECRET_KEY}
-      - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+      - SECRET_KEY=${FLASK_SECRET_KEY}
+      - LANGCHAIN_API_KEY=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
       - LLAMAINDEX_PATH=path/to/llamaindex
     ports:
       - "443:443"
@@ -45,4 +45,16 @@ services:
     depends_on:
       - frontend
       - backend
+    restart: unless-stopped
+
+  app:
+    image: creasybear/project-developer:latest
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
     restart: unless-stopped

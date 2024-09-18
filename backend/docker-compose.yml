@@ -15,25 +15,32 @@ services:
 
   backend:
     build:
-      context: ./jarvis-backend
+      context: ./src
       dockerfile: Dockerfile.prod
+    ports:
+      - "5000:5000"
     environment:
       - FLASK_ENV=production
-      - SECRET_KEY=${SECRET_KEY}
-      - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
-      - LLAMAINDEX_PATH=path/to/llamaindex
-    ports:
-      - "443:443"
-    volumes:
-      - ./certs:/certs
-      - ./llamaindex:/app/llamaindex
-    command: flask run --cert=/certs/cert.pem --key=/certs/key.pem
+      - DATABASE_URL=postgres://user:password@db:5432/jarvis
+      - CACHE_URL=redis://cache:6379/0
+    depends_on:
+      - db
+      - cache
     restart: unless-stopped
 
-  redis:
-    image: 'redis:latest'
-    ports:
-      - '6379:6379'
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: jarvis
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  cache:
+    image: redis:6
+    volumes:
+      - cache-data:/data
     restart: unless-stopped
 
   nginx:
@@ -46,3 +53,7 @@ services:
       - frontend
       - backend
     restart: unless-stopped
+
+volumes:
+  db-data:
+  cache-data:
