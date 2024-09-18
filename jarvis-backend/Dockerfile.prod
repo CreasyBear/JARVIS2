@@ -1,7 +1,6 @@
 # Stage 1: Build
 FROM python:3.9-slim AS builder
 WORKDIR /app
-COPY /JARVIS2/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
