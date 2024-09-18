@@ -15,7 +15,7 @@ services:
 
   backend:
     build:
-      context: ./jarvis-frontend/src
+      context: ./jarvis-backend
       dockerfile: Dockerfile.prod
     ports:
       - "5000:5000"
