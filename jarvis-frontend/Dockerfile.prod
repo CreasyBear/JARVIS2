@@ -1,10 +1,10 @@
 # Build stage
 FROM node:14 AS builder
 WORKDIR /app
-COPY jarvis-frontend/package.json jarvis-frontend/yarn.lock ./
-RUN yarn install --frozen-lockfile
-COPY jarvis-frontend .
-RUN yarn build
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
 
 # Production stage
 FROM nginx:alpine
